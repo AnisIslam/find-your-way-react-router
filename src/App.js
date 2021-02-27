@@ -10,7 +10,7 @@ function App() {
     <div>
       <Header></Header>
       <Shop></Shop>
-      <h1>Thanks for being with us.</h1>
+    
       
      
 
