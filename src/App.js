@@ -1,57 +1,33 @@
-
+import React, { createContext, useState } from 'react';
 import './App.css';
-import React, { useEffect, useState } from 'react';
-import Header from './components/Header/Header';
-import Shop from './components/Shop/Shop';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-import Review from './components/Review/Review';
-import Inventory from './components/Inventory/Inventory';
-import Notfound from './components/Notfound/Notfound';
-import Productdetail from './components/Productdetail/Productdetail';
-
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
+import Book from './components/Book/Book';
+import Header from './components/Header/Header';
 function App() {
-
   return (
-    <div>
-      <Header></Header>
-
       <Router>
-        <Switch>
-
-          <Route path="/shop">
-            <Shop></Shop>
-          </Route>
-
-          <Route path="/review">
-            <Review></Review>
-          </Route>
-
-          <Route path="/inventory">
-            <Inventory></Inventory>
-          </Route>
-
-          <Route exact path="/">
-            <Shop></Shop>
-          </Route>
-
-          <Route path="/product/:productKey">
-            <Productdetail></Productdetail>
-          </Route>
-
-          <Route path="*">
-            <Notfound></Notfound>
-          </Route>
-
-        </Switch>
-
+          <Header/>
+          <Switch>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/book/:bedType">
+              <Book />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
       </Router>
-
-    </div>
   );
 }
 
