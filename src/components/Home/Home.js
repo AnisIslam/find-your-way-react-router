@@ -1,49 +1,58 @@
+
 import React from 'react';
-import Room from '../Room/Room';
+import bg from '../../images/Bg.png'
+
+import Vehicle from '../Vehicle/Vehicle';
+
 
 const Home = () => {
     const style = {
         display: 'flex',
         margin: '40px',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        backgroundImage: `url(${bg})`,
+        backgroundSize: ' 100% 100%',
+        height: '500px'
     }
-    const rooms = [
+
+    const vehicles = [
         {
-            title: 'Standard Single Room',
-            description: 'Standard Single Rooms are designed in open -concept living area and have many facilities.',
-            imgUrl: 'https://cdn.jumeirah.com/-/mediadh/dh/hospitality/jumeirah/offers/offer-images/burj-al-arab-presidential-suite-living-room-4-hero.jpg',
-            bed: 1,
-            capacity: 1,
-            bedType: 'Single',
-            avatar: 'S',
-            price: 119
-        },
-        {
-            title: 'Couple Power Room',
-            description: 'Superior Double Rooms are perfectly equipped for traveling couples or friends.',
-            imgUrl: 'https://cdn.jumeirah.com/-/mediadh/dh/hospitality/jumeirah/offers/offer-images/burj-al-arab-royal-suite-staircase-5-hero.jpg',
-            bed: 1,
-            capacity: 2,
-            bedType: 'Double',
-            avatar: 'D',
-            price: 149
-        },
-        {
-            title: 'Family Capacity Room',
-            description: ' Have lots of in-room facilities and are designed in open-concept living area.',
-            imgUrl: 'https://cdn.jumeirah.com/-/mediadh/dh/hospitality/jumeirah/hotels/dubai/burj-al-arab-jumeirah/room/presidential-two-bedroom-suite/burj-al-arab-presidential-suite-guest-bedroom_6-4_landscape/burj-al-arab-presidential-suite-guest-bedroom_16-9_landscape.jpg?w=2080',
-            bed: 2,
+            title: 'Car',
+            imgUrl: 'https://i.ibb.co/2qy6Kx8/Frame-2.png',
             capacity: 4,
-            bedType: 'Family',
-            avatar: 'F',
-            price: 199
+            avatar: 'S',
+            price: 67
+        },
+        {
+            title: 'Bike',
+            imgUrl: 'https://i.ibb.co/7gpPwym/Frame.png',
+            capacity: 2,
+            avatar: 'S',
+            price: 30
+        },
+        {
+            title: 'Bus',
+            imgUrl: 'https://i.ibb.co/0m6CfZL/Frame-1.png',
+            capacity: 50,
+            avatar: 'S',
+            price: 15
+        },
+        {
+            title: 'Train',
+            imgUrl: 'https://i.ibb.co/gdPHCMm/Group.png',
+            capacity: 500,
+            avatar: 'S',
+            price: 10
         }
     ]
+
     return (
-        <div style={style}>
+        <div style={style} className=" row container ">
             {
-                rooms.map(room => <Room key={room.bedType} room={room}></Room>)
+                vehicles.map(vehicle => <Vehicle key={vehicle.title} vehicle={vehicle} ></Vehicle>)
             }
+            
+
         </div>
     );
 };
