@@ -1,18 +1,15 @@
-
 import React from 'react';
 import bg from '../../images/Bg.png'
-
 import Vehicle from '../Vehicle/Vehicle';
-
-
 const Home = () => {
     const style = {
         display: 'flex',
         margin: '40px',
-        justifyContent: 'space-between',
+        alignItems: 'space-between',
         backgroundImage: `url(${bg})`,
-        backgroundSize: ' 100% 100%',
-        height: '500px'
+        backgroundSize: '100% 100%',
+        backgroundPosition: 'absolute',
+    
     }
 
     const vehicles = [
@@ -47,7 +44,7 @@ const Home = () => {
     ]
 
     return (
-        <div style={style} className=" row container ">
+        <div style={style} className="row container  ">
             {
                 vehicles.map(vehicle => <Vehicle key={vehicle.title} vehicle={vehicle} ></Vehicle>)
             }

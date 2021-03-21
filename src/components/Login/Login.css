@@ -27,6 +27,9 @@
     text-align: center;
     border-top: 1px solid lightgray;
 }
+.otherLogin img{
+    width: 40px;
+}
 .loginButton img{
     width: 30px;
     position: relative;

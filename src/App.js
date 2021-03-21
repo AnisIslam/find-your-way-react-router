@@ -12,6 +12,9 @@ import bg from './images/Bg.png'
 import Header from './components/Header/Header';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Destination from './components/Destination/Destination';
+import NotFound from './components/NotFound/NotFound';
+import Blog from './components/Blog/Blog';
+import Contact from './components/Contact/Contact';
 
 export const UserContext = createContext();
 const style = {
@@ -23,13 +26,24 @@ function App(props) {
 
   return (
     <UserContext.Provider style={style} value={[loggedInUser, setLoggedInUser]}>
-      <p>Name: {loggedInUser.name}</p>
+      <p>{loggedInUser.name}</p>
+
       <Router>
         <Header />
         <Switch>
+
           <Route path="/home">
             <Home />
           </Route>
+
+          <Route path="/blog">
+            <Blog />
+          </Route>
+
+          <Route path="/contact">
+            <Contact />
+          </Route>
+
           <Route path="/login">
             <Login />
           </Route>
@@ -41,6 +55,11 @@ function App(props) {
           <Route exact path="/">
             <Home />
           </Route>
+
+          <Route path="*">
+            <NotFound></NotFound>
+          </Route>
+
         </Switch>
       </Router>
     </UserContext.Provider>

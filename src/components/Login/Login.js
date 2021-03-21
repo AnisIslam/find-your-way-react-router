@@ -5,7 +5,6 @@ import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
 import './Login.css'
-
 import googleIcon from '../../images/google.png'
 
 if (firebase.apps.length === 0) {
@@ -78,7 +77,6 @@ const Login = () => {
 
     const updateUserName = name => {
         const user = firebase.auth().currentUser;
-
         user.updateProfile({
             displayName: name
         }).then(function () {
@@ -146,6 +144,9 @@ const Login = () => {
             });
 
     }
+
+
+    
     return (
         <div style={{ textAlign: 'center' }}>
             <div>
@@ -163,8 +164,7 @@ const Login = () => {
                             <input type="password" name="password" id="" onBlur={handleChange} placeholder="Your password" required />
                             <br />
 
-
-                            <br />
+                           <br />
                             <input className="buttonStyle" type="submit" onClick={handleSubmit} value="Create an account" />
                             <br />
                             <br />

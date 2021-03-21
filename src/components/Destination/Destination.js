@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Destination.css';
 import googlemap from '../../images/Map.png';
 import { Button, Card, Form } from 'react-bootstrap';
@@ -7,85 +7,62 @@ import { useParams } from 'react-router';
 const Destination = () => {
     const { title } = useParams();
 
-    const ticket = [
-        {
-            title: 'Car',
-            CarimgUrl: 'https://i.ibb.co/2qy6Kx8/Frame-2.png',
-            Carcapacity: 4,
-            avatar: 'S',
-            Carprice: 67
-        },
-        {
-            title: 'Bike',
-            BikeimgUrl: 'https://i.ibb.co/7gpPwym/Frame.png',
-            Bikecapacity: 2,
-            avatar: 'S',
-            Bikeprice: 30
-        },
-        {
-            title: 'Bus',
-            BusimgUrl: 'https://i.ibb.co/0m6CfZL/Frame-1.png',
-            Buscapacity: 50,
-            avatar: 'S',
-            Busprice: 15
-        },
-        {
-            title: 'Train',
-            TrainimgUrl: 'https://i.ibb.co/gdPHCMm/Group.png',
-            Traincapacity: 500,
-            avatar: 'S',
-            Trainprice: 10
-        }
-    ]
+    const [destination, setDestination] = useState({
+        from: "",
+        to: ""
+    })
+    const handleBlur = (e) => {
+        if (e.target.name === "pickFrom") {
+            const data = { ...destination };
+            data.from = e.target.value;
+            console.log(data);
 
-    console.log(title);
-    let from = '';
-    let to = '';
-    let locationValue = true;
-    const handleSearch = (event) => {
-        if (event.target.name === 'fromName') {
-            from = event.target.value;
+            setDestination(data);
         }
-        if (event.target.name === 'toName') {
-            to = event.target.value;
+        if (e.target.name === "pickTo") {
+            const data = { ...destination };
+            data.to = e.target.value;
+            console.log(data);
 
+            setDestination(data);
         }
     }
-    const searchSubmit = (event) => {
-        console.log(from);
-        console.log(to);
-        if (from != null && to != null) {
-            locationValue = true;
-
-        }
-        event.preventDefault();
+    
+    const handleSearch = () => {
+        document.getElementById("searchForm").style.display = "none";
+        document.getElementById("resultForm").style.display = "block";
     }
-
     return (
         <div className='d-flex'>
             {
-                <Form className='destination-search' onSubmit={searchSubmit}>
-                    <div>
-                        <Form.Group controlId="">
-                            <Form.Label>From</Form.Label>
-                            <Form.Control onBlur={handleSearch} type="text" name="fromName" placeholder="" />
-                        </Form.Group>
-                        <Form.Group controlId="">
-                            <Form.Label>To</Form.Label>
-                            <Form.Control onBlur={handleSearch} type="text" name="toName" placeholder="" />
-                        </Form.Group>
+                <div className='w-25'>
+                    <form id="searchForm" style={{ backgroundColor: "whitesmoke", borderRadius: "10px", padding: "20px" }}>
+                        <label htmlFor="">Pick From</label> <br />
+                        <input onBlur={handleBlur} className="w-100" type="text" name="pickFrom" id="pickFrom" /><br /><br />
+                        <label htmlFor="">Pick To</label> <br />
+                        <input onBlur={handleBlur} className="w-100" type="text" name="pickTo" id="pickTo" /> <br /><br />
+                        <p onClick={handleSearch} style={{ width: "100%", fontSize: "25px", height: "40px", borderRadius: "5px", backgroundColor: "tomato", color: "white", textAlign: "center", cursor: "pointer" }}>
+                            Search
+                    </p>
+                    </form>
+                    <form id="resultForm" style={{ backgroundColor: "whitesmoke", borderRadius: "10px", padding: "20px", display: "none" }}>
+                        <div style={{ backgroundColor: 'tomato', margin: '5px', color: 'white', padding: '10px', borderRadius: '10px' }}>
+                            <h2>{destination.from}</h2><br /><br /><p>To </p><br /><br />
 
-                        <div>
-                            <label for="date">Date:</label>
-                            <input type="date" id="birthday" name="birthday" />
+                            <h2>{destination.to}</h2>
+
                         </div>
-                        <Button type="submit">Search</Button>
-                    </div>
-                </Form>
+                        <div style={{ backgroundColor: 'tomato', margin: '5px', color: 'white', padding: '10px', borderRadius: '10px' }}>
+                            <p>{title}
+                            {/* <img src={ticket.CarimgUrl} alt=""/> */}
+                            </p>
+                        </div>
+                    </form>
+                </div>
             }
 
             <div>
-                <img className='map' src={googlemap} alt="" />
+                <img className='map w-75' src={googlemap} alt="" />
             </div>
 
         </div>
